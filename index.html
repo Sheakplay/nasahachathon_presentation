@@ -104,6 +104,21 @@
   .tl .t { font-family: var(--pixel); font-size: 14px; color: var(--star); }
   .tl .e { font-size: 18px; margin-top: 10px; }
 
+  /* slide 5: multiplayer */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .step { display: flex; gap: 18px; align-items: flex-start; font-size: 20px; line-height: 1.5; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 22px 22px; }
+  .step .n { font-family: var(--pixel); font-size: 22px; color: var(--star); padding-top: 4px; }
+  .key { font-family: var(--mono); font-weight: 700; font-size: .9em; color: #fff; background: #1a1f2e; border: 1px solid #2d3448; border-bottom-width: 3px; border-radius: 5px; padding: 1px 8px; white-space: nowrap; }
+  .ways { display: grid; grid-template-columns: 1fr 1.25fr 1fr; gap: 22px; margin-top: 26px; }
+  .way { border: 1px solid var(--line); border-radius: 8px; padding: 22px 24px; }
+  .way.best { border: 2px solid var(--good); background: rgba(108,240,138,.06); }
+  .way .wt { font-family: var(--pixel); font-size: 13px; color: var(--sky); margin-bottom: 12px; letter-spacing: 1px; }
+  .way.best .wt { color: var(--good); }
+  .way p { font-size: 19px; line-height: 1.5; }
+  .foot { display: flex; justify-content: space-between; gap: 30px; margin-top: 30px; font-size: 19px; align-items: center; }
+  .tagx { font-family: var(--pixel); font-size: 11px; color: #000; background: var(--star); padding: 5px 8px; border-radius: 3px; margin-right: 10px; vertical-align: 2px; }
+  .tagx.next { background: #2d3448; color: var(--dim); }
+
   /* slide 6 */
   .stack { display: grid; gap: 16px; }
   .facts { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 22px; margin-top: 8px; }
@@ -223,22 +238,23 @@
     </div>
   </section>
 
-  <!-- 5. Launch -->
+  <!-- 5. Play together online -->
   <section class="slide">
-    <div class="kicker">LAUNCH</div>
-    <h2>SLS liftoff, <span class="acc">Artemis I</span> style</h2>
-    <div class="film">
-      <figure><img class="shot" src="img/launch_countdown.png" alt="Countdown"><figcaption>T−5 s · RS-25 engines start</figcaption></figure>
-      <figure><img class="shot" src="img/launch_liftoff.png" alt="Liftoff"><figcaption>T+0 · booster ignition, liftoff</figcaption></figure>
-      <figure><img class="shot" src="img/launch_tower.png" alt="Tower cleared"><figcaption>T+7 s · tower cleared</figcaption></figure>
-      <figure><img class="shot" src="img/launch_ascent.png" alt="Ascent"><figcaption>T+13 s · roll and pitch program</figcaption></figure>
+    <div class="kicker">MULTIPLAYER</div>
+    <h2>Play together, <span class="acc">from anywhere</span></h2>
+    <div class="steps">
+      <div class="step"><div class="n">01</div><div><b>Host</b> clicks <span class="key">Server</span> and picks a role. The game shows the address to share and a <span class="key">Copy IP:port</span> button.</div></div>
+      <div class="step"><div class="n">02</div><div><b>Friends</b> click <span class="key">Client</span>, pick a free role and paste the host's <span class="key">IP:port</span>.</div></div>
+      <div class="step"><div class="n">03</div><div><b>The match starts</b> on its own once all four roles are taken.</div></div>
     </div>
-    <div class="timeline">
-      <div class="tl"><div class="t">T−6 s</div><div class="e">4 RS-25 engines ignite</div></div>
-      <div class="tl"><div class="t">T+0</div><div class="e">Solid boosters, 39.1 MN of thrust</div></div>
-      <div class="tl"><div class="t">T+2:12</div><div class="e">Booster separation</div></div>
-      <div class="tl"><div class="t">T+8:04</div><div class="e">Main engine cutoff</div></div>
-      <div class="tl"><div class="t">185 km</div><div class="e">Parking orbit, 7.8 km/s</div></div>
+    <div class="ways">
+      <div class="way"><div class="wt">SAME WI-FI / LAN</div><p>Works out of the box: use the local address the host sees.</p></div>
+      <div class="way best"><div class="wt">ONLINE · RECOMMENDED</div><p>Join one virtual LAN: <b>Radmin VPN</b>, <b>ZeroTier</b> or <b>Tailscale</b>. No router setup: share the VPN address from the host's address list.</p></div>
+      <div class="way"><div class="wt">ONLINE · PORT FORWARD</div><p>Forward <b>UDP 42069</b> on the host's router. Needs a public IP from the provider.</p></div>
+    </div>
+    <div class="foot">
+      <div><span class="tagx">SOLO</span> Type <span class="key">ansharky</span> in the IP field to play alone and try every role.</div>
+      <div class="dim"><span class="tagx next">NEXT</span> Start with 1–3 players · dedicated server · browser version</div>
     </div>
   </section>
 
