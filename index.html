@@ -145,6 +145,10 @@
   #remote .count .cur { color: var(--star); }
   #remote .count .sep { color: var(--dim); }
 
+  #remote .divider { width: 1px; height: 24px; background: #2a3046; margin: 0 4px; }
+  #remote #sound { font-size: 20px; }
+  #remote #sound.off { color: #4a5068; text-decoration: line-through; }
+
   #progress { position: fixed; left: 0; bottom: 0; height: 3px; background: var(--star); z-index: 10; transition: width .45s ease; }
 </style>
 </head>
@@ -295,7 +299,13 @@
   <button id="prev" aria-label="Previous slide">‹</button>
   <div class="count"><span class="cur" id="cur">01</span> <span class="sep">/</span> <span id="total">07</span></div>
   <button id="next" aria-label="Next slide">›</button>
+  <span class="divider"></span>
+  <button id="sound" aria-label="Toggle music" title="Music (M)">♪</button>
 </div>
+<audio id="music" loop preload="auto">
+  <source src="audio/crystalline_horizons.m4a" type="audio/mp4">
+  <source src="audio/crystalline_horizons.ogg" type="audio/ogg">
+</audio>
 <div id="progress"></div>
 
 <script>
@@ -387,6 +397,31 @@
     }
     requestAnimationFrame(draw);
   }
+  // background music at 50% volume; browsers only allow playback after a user gesture,
+  // so it starts on the first click / key press / touch
+  const music = document.getElementById('music');
+  const soundBtn = document.getElementById('sound');
+  music.volume = 0.5;
+  let musicOn = true;
+  function syncSound() { soundBtn.classList.toggle('off', !musicOn || music.paused); }
+  function startMusic() { if (musicOn && music.paused) music.play().then(syncSound).catch(syncSound); }
+  ['pointerdown', 'keydown', 'touchstart'].forEach(ev => addEventListener(ev, e => {
+    if (e.type === 'keydown' && (e.key === 'm' || e.key === 'M')) return; // M itself toggles the music
+    startMusic();
+  }, { passive: true }));
+  startMusic(); // works right away if the browser allows autoplay
+  function toggleMusic() {
+    musicOn = music.paused;
+    if (musicOn) music.play().then(syncSound).catch(syncSound); else music.pause();
+    syncSound();
+  }
+  soundBtn.addEventListener('pointerdown', e => e.stopPropagation());
+  soundBtn.addEventListener('click', () => { toggleMusic(); showRemote(); });
+  addEventListener('keydown', e => { if (e.key === 'm' || e.key === 'M') { toggleMusic(); showRemote(); } });
+  music.addEventListener('play', syncSound);
+  music.addEventListener('pause', syncSound);
+  syncSound();
+
   addEventListener('hashchange', () => {
     const n = parseInt(location.hash.slice(1), 10);
     if (n >= 1 && n <= slides.length && n - 1 !== i) go(n - 1);
