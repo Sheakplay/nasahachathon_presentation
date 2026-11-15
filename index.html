@@ -132,6 +132,29 @@
   .thanks { margin-top: auto; display: flex; justify-content: space-between; align-items: end; }
   .thanks .big { font-family: var(--pixel); font-size: 54px; color: #fff; }
 
+  /* v2 additions */
+  .play { display: inline-flex; flex-direction: column; gap: 6px; margin-top: 30px; padding: 16px 22px; border: 2px solid var(--good); border-radius: 8px; background: rgba(108,240,138,.07); color: var(--good); text-decoration: none; font-family: var(--pixel); font-size: 16px; }
+  .play span { font-family: var(--mono); font-size: 18px; color: #fff; }
+  .play:hover { background: rgba(108,240,138,.14); }
+  .two.r3 { grid-template-columns: 900px 1fr; gap: 40px; }
+  .rolelist { display: grid; gap: 14px; }
+  .rolelist .r { border-left: 4px solid var(--c); background: var(--panel); border-radius: 6px; padding: 14px 18px; }
+  .rolelist .r b { display: block; font-family: var(--pixel); font-size: 14px; color: var(--c); margin-bottom: 8px; font-weight: 400; }
+  .rolelist .r span { font-size: 17px; line-height: 1.45; }
+  .flightrow { display: grid; grid-template-columns: 520px 520px 1fr; gap: 18px; margin-top: 18px; align-items: start; }
+  .facts1 { display: grid; gap: 12px; }
+  .modes { display: grid; grid-template-columns: 1fr 1.35fr 1fr; gap: 22px; }
+  .mode { border: 1px solid var(--line); border-radius: 8px; padding: 24px 26px; background: var(--panel); }
+  .mode.best { border: 2px solid var(--good); background: rgba(108,240,138,.06); }
+  .mode .wt { font-family: var(--pixel); font-size: 13px; color: var(--sky); margin-bottom: 16px; letter-spacing: 1px; }
+  .mode.best .wt { color: var(--good); }
+  .mode p { font-size: 19px; line-height: 1.55; }
+  .mode .url { margin-top: 18px; font-size: 17px; color: #fff; background: #12161f; border: 1px dashed #2d3448; border-radius: 6px; padding: 10px 12px; word-break: break-all; }
+  .steps2 { padding-left: 22px; display: grid; gap: 14px; }
+  .steps2 li { font-size: 18px; line-height: 1.5; }
+  .steps2 li::marker { color: var(--star); font-weight: 700; }
+  code { font-family: var(--mono); font-size: 15px; color: var(--star); background: #12161f; border-radius: 4px; padding: 2px 6px; word-break: break-all; }
+
   /* floating remote */
   #remote {
     position: fixed; left: 50%; bottom: 28px; z-index: 10;
@@ -178,10 +201,11 @@
       <div>
         <div class="kicker">NASA SPACE APPS CHALLENGE</div>
         <h1>SPACE<br><span class="acc">MISSION</span></h1>
-        <p class="lead" style="margin-top:34px">A co-op pixel-art game where four players run a lunar program together, from buying a rocket to choosing where to land on the Moon.</p>
-        <div class="tag">Godot 4.5 · online co-op for 4 · built on NASA data</div>
+        <p class="lead" style="margin-top:30px">A pixel-art game about running a lunar program: buy a rocket, build instruments, fly to the Moon on real orbital mechanics and land where Apollo and Artemis go.</p>
+        <a class="play" href="https://sheakplay.github.io/spacemission_ansharky/" target="_blank" rel="noopener">▶ PLAY IN THE BROWSER<span>sheakplay.github.io/spacemission_ansharky</span></a>
+        <div class="tag">Solo with an NPC crew · online co-op for 4 · Godot 4.5</div>
       </div>
-      <figure><img class="shot" src="img/menu.png" alt="Main menu"></figure>
+      <figure><img class="shot" src="img/menu_solo.png" alt="Main menu"></figure>
     </div>
   </section>
 
@@ -189,37 +213,28 @@
   <section class="slide">
     <div class="kicker">THE IDEA</div>
     <h2>Going to the Moon is a <span class="acc">team sport</span></h2>
-    <p class="lead">Real missions succeed because finance, engineering, crew and mission control work as one. We turned that into a game: every player has a job nobody else can do, and real NASA numbers decide whether the rocket flies.</p>
+    <p class="lead">Real missions succeed because finance, engineering, crew and mission control work as one. We turned that into a game: every role has a job nobody else can do, and real NASA numbers decide whether the rocket flies.</p>
     <div class="stats">
-      <div class="stat"><div class="big">4</div><div class="lbl">roles, one shared room</div><div class="sub">each station works only for its owner</div></div>
+      <div class="stat"><div class="big">4</div><div class="lbl">roles in one control room</div><div class="sub">play one, the crew covers the rest</div></div>
       <div class="stat"><div class="big">15</div><div class="lbl">days of the campaign</div><div class="sub">launches only in launch windows</div></div>
       <div class="stat"><div class="big">800</div><div class="lbl">data points to win</div><div class="sub">4 endings, from a lunar base to a cancelled program</div></div>
     </div>
   </section>
 
-  <!-- 3. Roles -->
+  <!-- 3. Roles + NPC crew -->
   <section class="slide">
     <div class="kicker">FOUR ROLES</div>
-    <h2>Nobody can fly <span class="acc">alone</span></h2>
-    <div class="roles">
-      <div class="role" style="--c:#6cf08a">
-        <h3>ANALYST</h3><div class="where">Finance Office</div>
-        <ul><li>Manages the budget</li><li>Buys one of 9 rockets</li><li>Reports to sponsors</li><li>Receives NASA science priorities for the next mission</li></ul>
-      </div>
-      <div class="role" style="--c:#e8792f">
-        <h3>ENGINEER</h3><div class="where">Workshop</div>
-        <ul><li>Builds instruments and upgrades from metal</li><li>Runs ship diagnostics</li><li>Reads telemetry in flight and reports failures</li></ul>
-      </div>
-      <div class="role" style="--c:#5aa0ff">
-        <h3>ASTRONAUT</h3><div class="where">Loading Airlock</div>
-        <ul><li>Loads modules within the payload limit</li><li>Trains the crew</li><li>Follows the flight from the capsule</li></ul>
-      </div>
-      <div class="role" style="--c:#fbf236">
-        <h3>DISPATCHER</h3><div class="where">Mission Control</div>
-        <ul><li>Picks the mission profile</li><li>Fuels and launches the rocket</li><li>Plans the burn to the Moon</li><li>Chooses the landing site</li></ul>
+    <h2>Pick a role, <span class="acc">the crew does the rest</span></h2>
+    <div class="two r3">
+      <figure><img class="shot" src="img/room_npc.png" alt="Control room with NPC crew"><figcaption>Solo game: the player is the dispatcher; the analyst, astronaut and engineer are NPCs working at their own stations.</figcaption></figure>
+      <div class="rolelist">
+        <div class="r" style="--c:#6cf08a"><b>ANALYST</b><span>budget, buys one of 9 rockets, sponsor reports, NASA science priorities</span></div>
+        <div class="r" style="--c:#e8792f"><b>ENGINEER</b><span>builds instruments from metal, ship diagnostics, failure reports in flight</span></div>
+        <div class="r" style="--c:#5aa0ff"><b>ASTRONAUT</b><span>loads only the instruments that work on this mission, trains the crew</span></div>
+        <div class="r" style="--c:#fbf236"><b>DISPATCHER</b><span>mission profile, fuel, launch, translunar burn, landing site</span></div>
+        <p class="dim" style="font-size:16px;line-height:1.5;margin-top:4px">NPC crewmates use exactly the same actions as human players, so a solo game plays like a real team.</p>
       </div>
     </div>
-    <p class="note">Information is split on purpose: the engineer sees the failures, the dispatcher makes the decisions, so players have to talk.</p>
   </section>
 
   <!-- 4. Mission Control -->
@@ -227,60 +242,65 @@
     <div class="kicker">PREPARATION</div>
     <h2>Mission <span class="acc">Control</span></h2>
     <div class="two">
-      <figure><img class="shot" src="img/dispatcher.png" alt="Dispatcher station"><figcaption>The dispatcher's station: mission type, fuel, data forecast and pre-launch check.</figcaption></figure>
+      <figure><img class="shot" src="img/dispatcher_solo.png" alt="Dispatcher station"><figcaption>The dispatcher's station: mission type, fuel, data forecast and pre-launch check.</figcaption></figure>
       <ul class="list">
-        <li><b>4 mission profiles:</b> flyby, orbit, landing, landing &amp; return. Each one needs a different amount of fuel.</li>
+        <li><b>4 mission profiles:</b> flyby, orbit, landing, landing &amp; return. Each needs a different amount of fuel.</li>
         <li><b>Real launch physics:</b> thrust must exceed liftoff mass × 1.3, and the payload must fit the rocket.</li>
-        <li><b>Launch windows</b> and daily events such as storms, fuel shortages, solar flares and grants.</li>
+        <li><b>Launch windows</b> and daily events: storms, fuel shortages, solar flares, grants.</li>
         <li><b>Data forecast:</b> instruments only work on the right profile (a seismometer needs a landing).</li>
         <li>The <b>engineer's report</b> warns about the ship's weak points before launch.</li>
       </ul>
     </div>
   </section>
 
-  <!-- 5. Play together online -->
+  <!-- 5. Launch + flight -->
   <section class="slide">
-    <div class="kicker">MULTIPLAYER</div>
-    <h2>Play together, <span class="acc">from anywhere</span></h2>
-    <div class="steps">
-      <div class="step"><div class="n">01</div><div><b>Host</b> clicks <span class="key">Server</span> and picks a role. The game shows the address to share and a <span class="key">Copy IP:port</span> button.</div></div>
-      <div class="step"><div class="n">02</div><div><b>Friends</b> click <span class="key">Client</span>, pick a free role and paste the host's <span class="key">IP:port</span>.</div></div>
-      <div class="step"><div class="n">03</div><div><b>The match starts</b> on its own once all four roles are taken.</div></div>
+    <div class="kicker">LAUNCH &amp; FLIGHT</div>
+    <h2>SLS liftoff → <span class="acc">orbital mechanics</span></h2>
+    <div class="film">
+      <figure><img class="shot" src="img/launch_countdown.png" alt="Countdown"><figcaption>T−5 s · RS-25 engines start</figcaption></figure>
+      <figure><img class="shot" src="img/launch_liftoff.png" alt="Liftoff"><figcaption>T+0 · booster ignition</figcaption></figure>
+      <figure><img class="shot" src="img/launch_tower.png" alt="Tower cleared"><figcaption>T+7 s · tower cleared</figcaption></figure>
+      <figure><img class="shot" src="img/launch_ascent.png" alt="Ascent"><figcaption>T+13 s · pitch program</figcaption></figure>
     </div>
-    <div class="ways">
-      <div class="way"><div class="wt">SAME WI-FI / LAN</div><p>Works out of the box: use the local address the host sees.</p></div>
-      <div class="way best"><div class="wt">ONLINE · RECOMMENDED</div><p>Join one virtual LAN: <b>Radmin VPN</b>, <b>ZeroTier</b> or <b>Tailscale</b>. No router setup: share the VPN address from the host's address list.</p></div>
-      <div class="way"><div class="wt">ONLINE · PORT FORWARD</div><p>Forward <b>UDP 42069</b> on the host's router. Needs a public IP from the provider.</p></div>
-    </div>
-    <div class="foot">
-      <div><span class="tagx">SOLO</span> Type <span class="key">ansharky</span> in the IP field to play alone and try every role.</div>
-      <div class="dim"><span class="tagx next">NEXT</span> Start with 1–3 players · dedicated server · browser version</div>
-    </div>
-  </section>
-
-  <!-- 6. Flight -->
-  <section class="slide">
-    <div class="kicker">FLIGHT TO THE MOON</div>
-    <h2>Real <span class="acc">orbital mechanics</span>, real risks</h2>
-    <div class="two wide">
-      <figure><img class="shot" src="img/flight_plan.png" alt="Flight plan"><figcaption>The dispatcher picks the burn point and Δv; the trajectory is simulated with Earth and Moon gravity.</figcaption></figure>
-      <div class="stack">
-        <div class="facts">
-          <div class="fact"><b>TRANSLUNAR BURN</b>Δv 3.00–3.30 km/s from a 185 km orbit, about 3 days to the Moon</div>
-          <div class="fact"><b>FREE RETURN</b>The Apollo 13 trick: a path that swings home even without an engine</div>
-          <div class="fact"><b>HAZARDS</b>Meteor streams on the way: Perseids, Leonids, Geminids and others</div>
-          <div class="fact"><b>6 FAILURES</b>Engine, oxygen, radiation shielding, radar, power, comms, each tied to a real mission</div>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
-          <figure><img class="shot" src="img/flight_coast.png" alt="Coasting to the Moon"><figcaption>Coast to the Moon</figcaption></figure>
-          <figure><img class="shot" src="img/landing_sites.png" alt="Landing sites"><figcaption>12 landing sites</figcaption></figure>
-        </div>
-        <p style="font-size:15px;line-height:1.45" class="dim">Landing sites include Apollo 11–17, Reiner Gamma and the Artemis III south-pole regions. Each is rated by slope, sunlight and Earth visibility.</p>
+    <div class="flightrow">
+      <figure><img class="shot" src="img/flight_plan.png" alt="Flight plan"><figcaption>Burn planning: trajectory simulated with Earth and Moon gravity</figcaption></figure>
+      <figure><img class="shot" src="img/landing_sites.png" alt="Landing sites"><figcaption>12 landing sites: Apollo 11–17, Artemis III south pole</figcaption></figure>
+      <div class="facts1">
+        <div class="fact"><b>TRANSLUNAR BURN</b>Δv 3.00–3.30 km/s from a 185 km orbit, ~3 days to the Moon</div>
+        <div class="fact"><b>FREE RETURN</b>The Apollo 13 path that swings home without an engine</div>
+        <div class="fact"><b>6 FAILURES · METEOR STREAMS</b>engine, oxygen, shielding, radar, power, comms</div>
       </div>
     </div>
   </section>
 
-  <!-- 7. Data, tech, thanks -->
+  <!-- 6. How to play -->
+  <section class="slide">
+    <div class="kicker">HOW TO PLAY</div>
+    <h2>Solo or co-op, <span class="acc">in the browser</span></h2>
+    <div class="modes">
+      <div class="mode best">
+        <div class="wt">SOLO · ANY DEVICE</div>
+        <p>Open the link, press <span class="key">Play solo</span>, pick a role. The other three roles are NPC crewmates.</p>
+        <div class="url">sheakplay.github.io/spacemission_ansharky</div>
+      </div>
+      <div class="mode">
+        <div class="wt">ONLINE CO-OP · 4 PLAYERS</div>
+        <ol class="steps2">
+          <li>Host runs the game on a PC → <span class="key">Server</span> → picks a role</li>
+          <li>Host opens a tunnel:<br><code>cloudflared tunnel --url http://localhost:42069</code></li>
+          <li>Friends open<br><code>…/spacemission_ansharky/?server=https://xxxx.trycloudflare.com</code><br>pick a role and connect, in the browser or on a PC</li>
+        </ol>
+      </div>
+      <div class="mode">
+        <div class="wt">SAME WI-FI / LAN</div>
+        <p>Host → <span class="key">Server</span>. Others on PCs → <span class="key">Client</span> → host's <span class="key">IP:42069</span>.</p>
+        <p class="dim" style="font-size:16px;margin-top:14px">Multiplayer runs over WebSocket, so browser and desktop players share one match.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. NASA data, tech, thanks -->
   <section class="slide">
     <div class="kicker">NASA DATA &amp; TECHNOLOGY</div>
     <h2>Built on <span class="acc">NASA</span> sources</h2>
@@ -294,18 +314,17 @@
         <li><b>LCROSS</b> (2009): water ice in Cabeus crater</li>
         <li><b>Apollo seismometers</b> and <b>NASA Meteoroid Environment Office</b></li>
       </ul>
-      <div>
-        <ul class="list">
-          <li><b>Godot 4.5</b>, GDScript</li>
-          <li>Online co-op over <b>ENet</b>, host-authoritative state</li>
-          <li>Earth–Moon <b>trajectory simulator</b> in GDScript</li>
-          <li><b>Pixel art</b>, launch cinematic and 4 music tracks</li>
-        </ul>
-      </div>
+      <ul class="list">
+        <li><b>Godot 4.5</b>, GDScript, Web export (WebGL 2)</li>
+        <li><b>WebSocket</b> multiplayer: browser + desktop, host-authoritative</li>
+        <li><b>NPC crew</b> that plays any missing role</li>
+        <li>Earth–Moon <b>trajectory simulator</b></li>
+        <li><b>Pixel art</b>, launch cinematic and 4 music tracks</li>
+      </ul>
     </div>
     <div class="thanks">
       <div class="big">THANK YOU<span style="color:var(--star)">_</span></div>
-      <div class="dim" style="font-size:18px;text-align:right">Space Mission · Team Ansharky</div>
+      <div class="dim" style="font-size:18px;text-align:right">Space Mission · Team Ansharky<br><span style="color:var(--sky)">sheakplay.github.io/spacemission_ansharky</span></div>
     </div>
   </section>
 
